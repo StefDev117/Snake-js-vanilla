@@ -8,9 +8,14 @@ const leftBtn = document.querySelector(".left");
 const windowWidth = (window.innerWidth);
 
 let divisor = 1;
-if(windowWidth < 950) {
-  divisor = 2;
-} 
+
+if(windowWidth < 750) {
+  divisor = 2.5;
+} else if((windowWidth < 1050 && windowWidth > 750)) {
+  divisor = 1.5;
+} else {
+  divisor = 1;
+}
 
 window.onload = () => {
   let canvas;
