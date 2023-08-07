@@ -1,17 +1,17 @@
 console.log("snake.js");
 const body = document.querySelector("body");
-
+const parentCanvas = document.querySelector(".parent-canvas");
+console.log(parentCanvas);
 //test
 const leftBtn = document.querySelector(".left");
 
-
-const windowWidth = (window.innerWidth);
+const windowWidth = window.innerWidth;
 
 let divisor = 1;
 
-if(windowWidth < 750) {
+if (windowWidth < 750) {
   divisor = 2.5;
-} else if((windowWidth < 1050 && windowWidth > 750)) {
+} else if (windowWidth < 1050 && windowWidth > 750) {
   divisor = 1.5;
 } else {
   divisor = 1;
@@ -36,9 +36,17 @@ window.onload = () => {
 
   init();
 
+  // createArrow();
+  // function createArrow() {
+  //   const btnTop = document.createElement("button");
+  //   btnTop.classList.add("btn-top");
+  //   btnTop.textContent = "<>";
+  //   body.appendChild(btnTop);
+  // }
+
   function init() {
     canvas = document.createElement("canvas");
-    document.body.appendChild(canvas);
+    parentCanvas.appendChild(canvas);
     canvas.width = canvasWidth;
     canvas.height = canvasHeight;
     ctx = canvas.getContext("2d");
@@ -198,11 +206,11 @@ window.onload = () => {
     ctx.font = `${fontGameOver}px Arial`;
     ctx.textAlign = "center";
     ctx.fillStyle = "rgb(92, 4, 4)";
-    ctx.fillText("Game Over", canvasWidth / 2 , canvasHeight / 2 - 50 );
+    ctx.fillText("Game Over", canvasWidth / 2, canvasHeight / 2 - 50);
     ctx.fillText(
       "Appuyer sur la touche espace pour rejouer.",
-      canvasWidth / 2 ,
-      canvasHeight / 2 
+      canvasWidth / 2,
+      canvasHeight / 2
     );
     ctx.restore();
     //enregistre les paramètres de configuraiton
@@ -229,9 +237,11 @@ window.onload = () => {
     ctx.save();
     let fontScore = 80 / divisor;
     ctx.font = `${fontScore}px Arial`;
+    const textWidth = ctx.measureText(score.toString()).width;
+
     ctx.fillText(
       score.toString(),
-      canvasWidth / 2 - fontScore / 2,
+      canvasWidth / 2 - textWidth / 2,
       canvasHeight - 10
     );
     ctx.restore();
@@ -391,8 +401,7 @@ window.onload = () => {
     };
   }
 
-  document.addEventListener("keydown", function(event) {
-
+  document.addEventListener("keydown", function (event) {
     let newDirection2;
 
     switch (event.code) {
@@ -401,7 +410,6 @@ window.onload = () => {
 
         break;
       case "ArrowUp":
-        
         break;
       case "ArrowDown":
         newDirection2 = "down";
@@ -409,7 +417,7 @@ window.onload = () => {
         break;
       case "ArrowRight":
         newDirection2 = "right";
-        
+
         break;
       case "ArrowLeft":
         newDirection2 = "left";
@@ -445,7 +453,3 @@ window.onload = () => {
     snakee.setDirection(newDirection2);
   });
 };
-
-
-
-

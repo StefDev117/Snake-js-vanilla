@@ -1,4 +1,6 @@
-*, ::before, ::after {
+*,
+::before,
+::after {
   margin: 0;
   padding: 0;
 }
@@ -13,9 +15,108 @@ body {
           justify-content: center;
 }
 
+.parent-canvas {
+  background: blue;
+  margin: 50px 0;
+  position: relative;
+}
+
 canvas {
   background: #d0c5c7;
-  margin: 50px 0;
-  border: 10px solid #000000;
+}
+
+.arrow-div {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 40%;
+}
+
+.arrow-div .arrow {
+  width: 20%;
+  aspect-ratio: 1/1;
+  -webkit-box-shadow: 2px 2px 2px black;
+          box-shadow: 2px 2px 2px black;
+  cursor: pointer;
+  background: -webkit-gradient(linear, left top, right top, from(#3309dc), to(black)) no-repeat;
+  background: linear-gradient(90deg, #3309dc, black) no-repeat;
+  opacity: 0.25;
+  background: -webkit-gradient(linear, left top, right top, from(#c2c2c2), to(#3309dc)) no-repeat;
+  background: linear-gradient(90deg, #c2c2c2, #3309dc) no-repeat;
+}
+
+.arrow-div .arrow:hover {
+  opacity: 0.8;
+}
+
+.arrow-div .arrow i {
+  font-size: 2rem;
+  font-weight: bold;
+  display: block;
+  color: black;
+}
+
+@media screen and (max-width: 758px) {
+  .arrow-div .arrow i {
+    font-size: 1.2rem;
+  }
+}
+
+.arrow-div .arrow-horizontal {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 20% 0;
+}
+
+.arrow-div .arrow-up,
+.arrow-div .arrow-down {
+  margin: 0 0 0 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  border-radius: 5%;
+  color: black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.arrow-div .arrow-left {
+  border-radius: 2%;
+  color: black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.arrow-div .arrow-right {
+  border-radius: 2%;
+  color: #a60e0e;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 /*# sourceMappingURL=snake.css.map */
