@@ -16,7 +16,6 @@ body {
 }
 
 .parent-canvas {
-  background: blue;
   margin: 50px 0;
   position: relative;
 }
@@ -40,8 +39,6 @@ canvas {
   -webkit-box-shadow: 2px 2px 2px black;
           box-shadow: 2px 2px 2px black;
   cursor: pointer;
-  background: -webkit-gradient(linear, left top, right top, from(#3309dc), to(black)) no-repeat;
-  background: linear-gradient(90deg, #3309dc, black) no-repeat;
   opacity: 0.25;
   background: -webkit-gradient(linear, left top, right top, from(#c2c2c2), to(#3309dc)) no-repeat;
   background: linear-gradient(90deg, #c2c2c2, #3309dc) no-repeat;

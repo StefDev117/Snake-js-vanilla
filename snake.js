@@ -452,4 +452,31 @@ window.onload = () => {
     // }
     snakee.setDirection(newDirection2);
   });
+
+  const arrowBtn = document.querySelectorAll(".arrow");
+
+  let newDirectionFromBtn;
+  for (let arrow = 0; arrow < arrowBtn.length; arrow++) {
+    const el = arrowBtn[arrow];
+    el.addEventListener("click", () => {
+      switch (true) {
+        case el.classList.contains("arrow-left"):
+          newDirectionFromBtn = "left";
+          break;
+        case el.classList.contains("arrow-right"):
+          newDirectionFromBtn = "right";
+          break;
+        case el.classList.contains("arrow-up"):
+          newDirectionFromBtn = "up";
+          break;
+        case el.classList.contains("arrow-down"):
+          newDirectionFromBtn = "down";
+          break;
+        default:
+          return;
+      }
+      snakee.setDirection(newDirectionFromBtn);
+    });
+  }
+
 };

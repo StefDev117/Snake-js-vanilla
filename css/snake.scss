@@ -6,43 +6,32 @@
 }
 
 body {
-  // background:linear-gradient(219deg, rgb(76, 137, 38), rgb(15, 184, 240)) no-repeat;
-  // height: 80vh;
-  // width: 80vw;
-  // max-width: 100%;
+
   background: #4b0d0d;
   display: flex;
   justify-content: center;
 }
 
 .parent-canvas {
-  background: blue;
   margin: 50px 0;
   position: relative;
 }
 
 canvas {
-  // padding: 0;
   background: rgb(208, 197, 199);
-  // margin: 50px 0 0 0vw;
-  // transform: translateX(-50%);
-//   border: 10px solid #000000;
 }
 
 .arrow-div {
   position: absolute;
-  // margin: 50% 0 0 50%;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  //   background: blue;
   width: 40%;
   .arrow {
     width: 20%;
     aspect-ratio: 1/1;
     box-shadow: 2px 2px 2px black;
     cursor: pointer;
-    background:linear-gradient(90deg, rgb(51, 9, 220), rgb(0, 0, 0)) no-repeat;
     opacity: 0.25;
     background:linear-gradient(90deg, rgb(194, 194, 194), rgb(51, 9, 220)) no-repeat;
     &:hover {
@@ -92,17 +81,6 @@ canvas {
 }
 
 @media screen and (max-width: 780px) {
-  // canvas {
-  //     background: red;
-  //     margin: 0 2%;
-  //     transform: translateX(0);
-  // }
+
 }
 
-// .left {
-//     background: #0d0366;
-//     border-radius: 10px;
-//     padding: 10px;
-//     color: white;
-//     // margin-left: 5%;
-// }
