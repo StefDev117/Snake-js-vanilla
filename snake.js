@@ -208,9 +208,14 @@ window.onload = () => {
     ctx.fillStyle = "rgb(92, 4, 4)";
     ctx.fillText("Game Over", canvasWidth / 2, canvasHeight / 2 - 50);
     ctx.fillText(
-      "Appuyer sur la touche espace pour rejouer.",
+      "Appuyer sur la touche espace ou",
       canvasWidth / 2,
       canvasHeight / 2
+    );
+    ctx.fillText(
+      "en dehors du cadre pour rejouer.",
+      canvasWidth / 2,
+      canvasHeight / 2 + 50
     );
     ctx.restore();
     //enregistre les paramètres de configuraiton
@@ -478,5 +483,12 @@ window.onload = () => {
       snakee.setDirection(newDirectionFromBtn);
     });
   }
-
+  body.addEventListener("click", (e) => {
+    e.stopPropagation();
+    if(e.target === body) {
+      //je demande si je clique bien sur body et non dans ses éléments enfants.
+      console.log("body click");
+      restart();
+    }
+  });
 };
