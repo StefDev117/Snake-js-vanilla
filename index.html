@@ -7,10 +7,12 @@
     <title>Document</title>
     <link rel="stylesheet" href="./css/snake.css">
     <script src="https://kit.fontawesome.com/4f7e433c09.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/dotenv@16.3.1/lib/main.min.js"></script> -->
 </head>
 
 <body>
-    
+
     <!-- <button class="btn-top">⬆️</button> -->
     <div class="parent-canvas">
         <div class="arrow-div">
@@ -22,8 +24,32 @@
 
             <button class="arrow arrow-down"><i class="fa-solid fa-arrow-down"></i></button>
         </div>
-    </div>
+        <div id="modal-game-over">
+            <h2 id="game-over-title">Game Over</h2>
+            <br>
+            <h3 id="game-over-h3">Clique sur ta barre d'espace ou le bouton ci-dessous pour commencer</h3>
+            <button class="btn-restart">Commencer</button>
+            <div id="div-scores">
+                <form id="form-score">
+                    <div>
+                        <label for="pseudo">Entre ton pseudo</label>
+                        <input type="text" id="pseudo-input" name="pseudo" required>
+                    </div>
+                    <button type="submit">Soumettre</button>
+                </form>
+                <h3>Top 5:</h3>
+                <br>
+                <ul id="list-scores">
+                    <!-- <li>3000</li>
+                    <li>1000</li>
+                    <li>1000</li> -->
+                </ul>
 
+            </div>
+        </div>
+    </div>
+    <script src="./keys.js"></script>
+    <script src="./fetchAddData.js"></script>
     <script src="./snake.js"></script>
 </body>
 

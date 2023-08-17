@@ -6,7 +6,6 @@
 }
 
 body {
-
   background: #4b0d0d;
   display: flex;
   justify-content: center;
@@ -33,18 +32,19 @@ canvas {
     box-shadow: 2px 2px 2px black;
     cursor: pointer;
     opacity: 0.25;
-    background:linear-gradient(90deg, rgb(194, 194, 194), rgb(51, 9, 220)) no-repeat;
+    background: linear-gradient(90deg, rgb(194, 194, 194), rgb(51, 9, 220))
+      no-repeat;
     &:hover {
       opacity: 0.8;
     }
     i {
-        font-size: 2rem;
-        font-weight: bold;
-        display: block;
-        color: black;
-        @media screen and (max-width: 758px) {
-            font-size: 1.2rem;
-        }
+      font-size: 2rem;
+      font-weight: bold;
+      display: block;
+      color: black;
+      @media screen and (max-width: 758px) {
+        font-size: 1.2rem;
+      }
     }
   }
   .arrow-horizontal {
@@ -80,7 +80,137 @@ canvas {
   }
 }
 
-@media screen and (max-width: 780px) {
+#modal-game-over {
+  position: absolute;
+  // background: blue;
+  border-radius: 10px;
+  transition: 0.5s;
+  width: 90%;
+  height: 90%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // justify-content: center;
+  // display: none;
+  background: rgb(23, 23, 23);
+  color: #f1f1f1;
+  #game-over-title {
+    display: none;
+    margin: 2% 0 0 0;
+  }
+  .btn-restart {
+    color: #1e1e1e;
+    font-weight: bold;
+    margin: 10% 0;
+    padding: 3% 6%;
+    cursor: pointer;
+    background: linear-gradient(
+      110deg,
+      rgba(0, 0, 0, 1) 15%,
+      rgba(20, 216, 39, 1) 100%
+    );
+    border: none;
+    // border: 1px solid white;
+    border-radius: 10px;
+    -webkit-box-shadow: 5px 5px 15px 5px #000000;
+    box-shadow: 5px 5px 10px 5px #000000;
+    //shift right, shift down, blur, spread
+    //décalage vers la droite, décalage vers le bas(mettre des valeurs négatifs pour aller vers la gauche ou en haut
+    //
+    &:hover {
+      // animation: name duration timing-function delay iteration-count direction fill-mode;
+      animation: animeBtnTransit 0.4s ease-in-out forwards; /* Applique l'animation au bouton */
+      background-color: red;
+    }
+  }
+  #div-scores {
+    width: 60%;
+    ul#list-scores {
+      list-style-type: none;
+      li {
+      }
+    }
+    h2 {
+      text-align: center;
+    }
+    #game-over-h3 {
+      text-align: center;
+    }
 
+    form#form-score {
+      // display: none;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: red;
+      width: 50%;
+      div {
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        label {
+          width: 90%;
+        }
+        input {
+          width: 90%;
+          margin-bottom: 5%;
+        }
+      }
+    }
+
+  }
+
+
+  //tablets
+  @media screen and (min-width: 750px) and (max-width: 1050px) {
+    h2 {
+      font-size: 20px;
+    }
+    #game-over-h3 {
+      font-size: 16px;
+      text-align: center;
+    }
+
+  }
+  //mobiles
+
+  @media screen and (max-width: 750px) {
+    width: 104%;
+    height: 104%;
+    h2 {
+      font-size: 18px;
+    }
+    #game-over-h3 {
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .btn-restart {
+      margin: 3% 0;
+    }
+    #div-scores{
+background: blue;
+      width: 60%;
+      ul#list-scores {
+        // margin-top: 100px;
+        background: pink;
+        padding: 0 1%;
+        li {
+          font-size: 12px;
+        }
+      }
+    }
+  }
 }
 
+@keyframes animeBtnTransit {
+  100% {
+    color: rgb(252, 252, 252);
+    transform: scale(1.1);
+  }
+}

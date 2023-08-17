@@ -1,12 +1,23 @@
 console.log("snake.js");
 const body = document.querySelector("body");
 const parentCanvas = document.querySelector(".parent-canvas");
-console.log(parentCanvas);
+
+//modal gameOver
+const mdlGameOver = document.querySelector("#modal-game-over");
+const gameOverTitle = document.querySelector("#game-over-title");
+const gameOverH3 = document.querySelector("#game-over-h3");
+const btnRestart = document.querySelector(".btn-restart");
+const listScores = document.querySelector("#list-scores");
 //test
 const leftBtn = document.querySelector(".left");
 
+//formulaire
+const formulaire = document.querySelector("#form-score");
+const inputPseudo = document.querySelector("#pseudo-input");
+
 const windowWidth = window.innerWidth;
 
+let isInited = false;
 let divisor = 1;
 
 if (windowWidth < 750) {
@@ -17,6 +28,7 @@ if (windowWidth < 750) {
   divisor = 1;
 }
 
+score = 0;
 window.onload = () => {
   let canvas;
   let canvasWidth = 900 / divisor;
@@ -29,7 +41,6 @@ window.onload = () => {
   let applee;
 
   let timeOutId;
-  let score = 0;
 
   let widthInBlocks = canvasWidth / blockSize;
   let heightInBlocks = canvasHeight / blockSize;
@@ -164,8 +175,9 @@ window.onload = () => {
     //   ],
     //   "right"
     // );
-    applee = new Apple([28, 9]);
-
+    applee = new Apple([27, 10]);
+    // if(isInited){
+    // }
     refreshCanvas();
   }
 
@@ -178,10 +190,11 @@ window.onload = () => {
 
     // Relancer la fonction refreshCanvas() avec le délai souhaité (300 millisecondes dans cet exemple)
 
-    snakee.advance();
-
     if (snakee.checkCollision()) {
-      gameOver();
+      console.log(snakee.checkCollision());
+      gameOver(score);
+    } else if (isInited === false) {
+      console.log("not inited :(");
     } else {
       if (snakee.isEatingApple(snakee.body[0], applee.position)) {
         snakee.ateApple = true;
@@ -189,37 +202,49 @@ window.onload = () => {
           applee.setNewPosition();
         } while (applee.isOnSnake(snakee));
       }
+      snakee.advance();
 
       ctx.clearRect(0, 0, canvasWidth, canvasHeight);
       snakee.draw();
       applee.draw();
       drawScore();
-
-      // setTimeout(refreshCanvas, 300);
       timeOutId = setTimeout(refreshCanvas, 100);
     }
   }
 
-  function gameOver() {
+  function gameOver(score) {
+    gameOverTitle.style.display = "flex";
+    btnRestart.textContent = "Recommencer";
+    gameOverH3.textContent =
+      "Clique sur ta barre d'espace ou le bouton ci-dessous pour recommencer";
+
     ctx.save();
     let fontGameOver = 40 / divisor;
     ctx.font = `${fontGameOver}px Arial`;
     ctx.textAlign = "center";
     ctx.fillStyle = "rgb(92, 4, 4)";
-    ctx.fillText("Game Over", canvasWidth / 2, canvasHeight / 2 - 50);
-    ctx.fillText(
-      "Appuyer sur la touche espace ou",
-      canvasWidth / 2,
-      canvasHeight / 2
-    );
-    ctx.fillText(
-      "en dehors du cadre pour rejouer.",
-      canvasWidth / 2,
-      canvasHeight / 2 + 50
-    );
+    // ctx.fillText("Game Over", canvasWidth / 2, canvasHeight / 2 - 50);
+    // ctx.fillText(
+    //   "Appuyer sur la touche espace ou",
+    //   canvasWidth / 2,
+    //   canvasHeight / 2
+    // );
+    // ctx.fillText(
+    //   "en dehors du cadre pour rejouer.",
+    //   canvasWidth / 2,
+    //   canvasHeight / 2 + 50
+    // );
     ctx.restore();
-    //enregistre les paramètres de configuraiton
+    mdlGameOver.style.display = "flex";
   }
+  //formulaire
+  formulaire.addEventListener("submit", (e) => {
+    e.preventDefault();
+    console.log(inputPseudo.value, score);
+    dataSorted.push({pseudo: inputPseudo.value, score: score});
+    createList(dataSorted);
+    sendData(inputPseudo.value, score);
+  });
 
   function restart() {
     clearTimeout(refreshCanvas);
@@ -235,6 +260,8 @@ window.onload = () => {
       "right"
     );
     applee = new Apple([28, 9]);
+    mdlGameOver.style.display = "none";
+    score = 0;
     refreshCanvas();
   }
 
@@ -362,7 +389,13 @@ window.onload = () => {
 
     this.isEatingApple = function (head, applePosition) {
       if (head[0] === applePosition[0] && head[1] === applePosition[1]) {
-        score++;
+        // score++;
+        // addMil(score);
+        async function main() {
+          await addMil(); // Attend que le score atteigne 1000
+          console.log(score); // Affiche la valeur finale du score (1000)
+        }
+        main();
         return true;
       } else {
         return false;
@@ -429,6 +462,7 @@ window.onload = () => {
         break;
       case "Space":
         restart();
+
         score = 0;
         return;
       default:
@@ -458,11 +492,11 @@ window.onload = () => {
     snakee.setDirection(newDirection2);
   });
 
-  const arrowBtn = document.querySelectorAll(".arrow");
+  const interactionBtn = document.querySelectorAll(".arrow, .btn-restart");
 
   let newDirectionFromBtn;
-  for (let arrow = 0; arrow < arrowBtn.length; arrow++) {
-    const el = arrowBtn[arrow];
+  for (let arrow = 0; arrow < interactionBtn.length; arrow++) {
+    const el = interactionBtn[arrow];
     el.addEventListener("click", () => {
       switch (true) {
         case el.classList.contains("arrow-left"):
@@ -477,18 +511,102 @@ window.onload = () => {
         case el.classList.contains("arrow-down"):
           newDirectionFromBtn = "down";
           break;
+        case el.classList.contains("btn-restart"):
+          // newDirectionFromBtn = "down";
+          if (isInited) {
+            restart();
+          } else {
+            isInited = true;
+            mdlGameOver.style.display = "none";
+            refreshCanvas();
+          }
+          break;
         default:
           return;
       }
       snakee.setDirection(newDirectionFromBtn);
     });
   }
-  body.addEventListener("click", (e) => {
-    e.stopPropagation();
-    if(e.target === body) {
-      //je demande si je clique bien sur body et non dans ses éléments enfants.
-      console.log("body click");
-      restart();
-    }
-  });
+  // body.addEventListener("click", (e) => {
+  //   e.stopPropagation();
+  //   if (e.target === body) {
+  //     //je demande si je clique bien sur body et non dans ses éléments enfants.
+  //     console.log("body click");
+  //     restart();
+  //   }
+  // });
+
+  let intervalScore = null;
+
+  const addMil = () => {
+    return new Promise((resolve, reject) => {
+      if (intervalScore === null) {
+        intervalScore = setInterval(() => {
+          score += 10;
+          // scoreTxt.textContent = score;
+
+          if (score % 1000 === 0) {
+            clearInterval(intervalScore); // Arrêter l'intervalle lorsque le score atteint 1000
+            intervalScore = null; // Remettre la référence de l'intervalle à null
+            resolve(score);
+          }
+        }, 10);
+        console.log(score);
+      }
+    });
+  };
 };
+
+// mdlGameOver
+// addNewScore("Stephane", 10000);
+
+// function addNewScore(pseudo, score) {
+//   const newLiElement = document.createElement("li");
+
+//   // Ajouter du texte à l'intérieur de l'élément li
+//   newLiElement.textContent = `${pseudo} : ${score}`;
+
+//   // Ajouter l'élément li à la liste (élément ul ou ol)
+//   listScores.appendChild(newLiElement);
+// };
+
+let dataSorted;
+
+function createList(datas) {
+  dataSorted = datas.sort((a, b) => b.score - a.score).splice(0, 5);
+  //range mon tableau et garde le top 5
+  console.log(dataSorted);
+  writeScores(dataSorted);
+}
+
+function writeScores(datasSorted) {
+  listScores.innerHTML = "";
+  datasSorted.map(({ pseudo, score }, index) => {
+    const newLiElement = document.createElement("li");
+
+    newLiElement.textContent = `${index + 1} : ${pseudo} : ${score}`;
+
+    listScores.appendChild(newLiElement);
+    console.log(pseudo, score);
+  });
+}
+
+
+
+
+//formulaire et soumission
+formulaire.addEventListener("submit", (e) => {
+  e.preventDefault();
+});
+
+// function submitForm(score) {
+//   formulaire.style.display = "flex";
+//   formulaire.addEventListener("submit", (e) => {
+//     e.preventDefault();
+//     console.log(inputPseudo.value, score);
+//     dataSorted.push({pseudo: inputPseudo.value, score: score});
+//     createList(dataSorted);
+//     sendData(inputPseudo.value, score);
+//   });
+
+// }

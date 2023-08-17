@@ -116,4 +116,163 @@ canvas {
       -ms-flex-align: center;
           align-items: center;
 }
+
+#modal-game-over {
+  position: absolute;
+  border-radius: 10px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  width: 90%;
+  height: 90%;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #171717;
+  color: #f1f1f1;
+}
+
+#modal-game-over #game-over-title {
+  display: none;
+  margin: 2% 0 0 0;
+}
+
+#modal-game-over .btn-restart {
+  color: #1e1e1e;
+  font-weight: bold;
+  margin: 10% 0;
+  padding: 3% 6%;
+  cursor: pointer;
+  background: linear-gradient(110deg, black 15%, #14d827 100%);
+  border: none;
+  border-radius: 10px;
+  -webkit-box-shadow: 5px 5px 15px 5px #000000;
+  box-shadow: 5px 5px 10px 5px #000000;
+}
+
+#modal-game-over .btn-restart:hover {
+  -webkit-animation: animeBtnTransit 0.4s ease-in-out forwards;
+          animation: animeBtnTransit 0.4s ease-in-out forwards;
+  /* Applique l'animation au bouton */
+  background-color: red;
+}
+
+#modal-game-over #div-scores {
+  width: 60%;
+}
+
+#modal-game-over #div-scores ul#list-scores {
+  list-style-type: none;
+}
+
+#modal-game-over #div-scores h2 {
+  text-align: center;
+}
+
+#modal-game-over #div-scores #game-over-h3 {
+  text-align: center;
+}
+
+#modal-game-over #div-scores form#form-score {
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: red;
+  width: 50%;
+}
+
+#modal-game-over #div-scores form#form-score div {
+  width: 90%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#modal-game-over #div-scores form#form-score div label {
+  width: 90%;
+}
+
+#modal-game-over #div-scores form#form-score div input {
+  width: 90%;
+  margin-bottom: 5%;
+}
+
+@media screen and (min-width: 750px) and (max-width: 1050px) {
+  #modal-game-over h2 {
+    font-size: 20px;
+  }
+  #modal-game-over #game-over-h3 {
+    font-size: 16px;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  #modal-game-over {
+    width: 104%;
+    height: 104%;
+  }
+  #modal-game-over h2 {
+    font-size: 18px;
+  }
+  #modal-game-over #game-over-h3 {
+    font-size: 14px;
+    text-align: center;
+  }
+  #modal-game-over .btn-restart {
+    margin: 3% 0;
+  }
+  #modal-game-over #div-scores {
+    background: blue;
+    width: 60%;
+  }
+  #modal-game-over #div-scores ul#list-scores {
+    background: pink;
+    padding: 0 1%;
+  }
+  #modal-game-over #div-scores ul#list-scores li {
+    font-size: 12px;
+  }
+}
+
+@-webkit-keyframes animeBtnTransit {
+  100% {
+    color: #fcfcfc;
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+}
+
+@keyframes animeBtnTransit {
+  100% {
+    color: #fcfcfc;
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+}
 /*# sourceMappingURL=snake.css.map */
