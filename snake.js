@@ -12,6 +12,7 @@ const listScores = document.querySelector("#list-scores");
 const leftBtn = document.querySelector(".left");
 
 //formulaire
+const titleScores = document.querySelector(".title-scores");
 const formulaire = document.querySelector("#form-score");
 const inputPseudo = document.querySelector("#pseudo-input");
 
@@ -47,14 +48,6 @@ window.onload = () => {
 
   init();
 
-  // createArrow();
-  // function createArrow() {
-  //   const btnTop = document.createElement("button");
-  //   btnTop.classList.add("btn-top");
-  //   btnTop.textContent = "<>";
-  //   body.appendChild(btnTop);
-  // }
-
   function init() {
     canvas = document.createElement("canvas");
     parentCanvas.appendChild(canvas);
@@ -72,112 +65,8 @@ window.onload = () => {
       ],
       "right"
     );
-    // snakee = new Snake(
-    //   [
-    //     [20, 8],
-    //     [19, 8],
-    //     [18, 8],
-    //     [17, 8],
-    //     [16, 8],
-    //     [15, 8],
-    //     [14, 8],
-    //     [13, 8],
-    //     [12, 8],
-    //     [11, 8],
-    //     [10, 8],
-    //     [9, 8],
-    //     [8, 8],
-    //     [7, 8],
-    //     [6, 8],
-    //     [5, 8],
-    //     [4, 8],
-    //     [3, 8],
-    //     [3, 7],
-    //     [4, 7],
-    //     [5, 7],
-    //     [6, 7],
-    //     [7, 7],
-    //     [8, 7],
-    //     [9, 7],
-    //     [10, 7],
-    //     [11, 7],
-    //     [12, 7],
-    //     [13, 7],
-    //     [14, 7],
-    //     [15, 7],
-    //     [16, 7],
-    //     [17, 7],
-    //     [18, 7],
-    //     [19, 7],
-    //     [20, 7],
-    //     [20, 6],
-    //     [19, 6],
-    //     [18, 6],
-    //     [17, 6],
-    //     [16, 6],
-    //     [15, 6],
-    //     [14, 6],
-    //     [13, 6],
-    //     [12, 6],
-    //     [11, 6],
-    //     [10, 6],
-    //     [9, 6],
-    //     [8, 6],
-    //     [7, 6],
-    //     [6, 6],
-    //     [5, 6],
-    //     [4, 6],
-    //     [3, 6],
-
-    //     [3, 5],
-    //     [4, 5],
-    //     [5, 5],
-    //     [6, 5],
-    //     [7, 5],
-    //     [8, 5],
-    //     [9, 5],
-    //     [10, 5],
-    //     [11, 5],
-    //     [12, 5],
-    //     [13, 5],
-    //     [14, 5],
-    //     [15, 5],
-    //     [16, 5],
-    //     [17, 5],
-    //     [18, 5],
-    //     [19, 5],
-    //     [20, 5],
-    //     [21, 5],
-    //     [22, 5],
-    //     [23, 5],
-    //     [23, 4],
-    //     [22, 4],
-    //     [21, 4],
-    //     [20, 4],
-    //     [19, 4],
-    //     [18, 4],
-    //     [17, 4],
-    //     [16, 4],
-    //     [15, 4],
-    //     [14, 4],
-    //     [13, 4],
-    //     [12, 4],
-    //     [11, 4],
-    //     [10, 4],
-    //     [9, 4],
-    //     [8, 4],
-    //     [7, 4],
-    //     [6, 4],
-    //     [5, 4],
-    //     [4, 4],
-    //     [3, 4],
-    //     [2, 4],
-    //   ],
-    //   "right"
-    // );
+   
     applee = new Apple([27, 10]);
-    // if(isInited){
-    // }
     refreshCanvas();
   }
 
@@ -213,6 +102,11 @@ window.onload = () => {
   }
 
   function gameOver(score) {
+    titleScores.style.display = "none";
+    formulaire.style.display = "flex";
+    listScores.style.display = "none";
+    mdlGameOver.style.display = "flex";
+
     gameOverTitle.style.display = "flex";
     btnRestart.textContent = "Recommencer";
     gameOverH3.textContent =
@@ -223,6 +117,9 @@ window.onload = () => {
     ctx.font = `${fontGameOver}px Arial`;
     ctx.textAlign = "center";
     ctx.fillStyle = "rgb(92, 4, 4)";
+    //précédemment j'écrivais le game over et mon score dans le Canvas, je laisse l'exemple
+    //mais ceux ci sont maintenant écrits dans une modale.
+
     // ctx.fillText("Game Over", canvasWidth / 2, canvasHeight / 2 - 50);
     // ctx.fillText(
     //   "Appuyer sur la touche espace ou",
@@ -235,7 +132,6 @@ window.onload = () => {
     //   canvasHeight / 2 + 50
     // );
     ctx.restore();
-    mdlGameOver.style.display = "flex";
   }
   //formulaire
   formulaire.addEventListener("submit", (e) => {
@@ -520,6 +416,7 @@ window.onload = () => {
             mdlGameOver.style.display = "none";
             refreshCanvas();
           }
+          newDirectionFromBtn = "left";
           break;
         default:
           return;
@@ -527,14 +424,6 @@ window.onload = () => {
       snakee.setDirection(newDirectionFromBtn);
     });
   }
-  // body.addEventListener("click", (e) => {
-  //   e.stopPropagation();
-  //   if (e.target === body) {
-  //     //je demande si je clique bien sur body et non dans ses éléments enfants.
-  //     console.log("body click");
-  //     restart();
-  //   }
-  // });
 
   let intervalScore = null;
 
@@ -556,19 +445,6 @@ window.onload = () => {
     });
   };
 };
-
-// mdlGameOver
-// addNewScore("Stephane", 10000);
-
-// function addNewScore(pseudo, score) {
-//   const newLiElement = document.createElement("li");
-
-//   // Ajouter du texte à l'intérieur de l'élément li
-//   newLiElement.textContent = `${pseudo} : ${score}`;
-
-//   // Ajouter l'élément li à la liste (élément ul ou ol)
-//   listScores.appendChild(newLiElement);
-// };
 
 let dataSorted;
 
@@ -599,14 +475,3 @@ formulaire.addEventListener("submit", (e) => {
   e.preventDefault();
 });
 
-// function submitForm(score) {
-//   formulaire.style.display = "flex";
-//   formulaire.addEventListener("submit", (e) => {
-//     e.preventDefault();
-//     console.log(inputPseudo.value, score);
-//     dataSorted.push({pseudo: inputPseudo.value, score: score});
-//     createList(dataSorted);
-//     sendData(inputPseudo.value, score);
-//   });
-
-// }

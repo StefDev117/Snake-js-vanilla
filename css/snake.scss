@@ -48,7 +48,6 @@ canvas {
     }
   }
   .arrow-horizontal {
-    // width: 200px;
     display: flex;
     justify-content: space-between;
     margin: 20% 0;
@@ -82,7 +81,6 @@ canvas {
 
 #modal-game-over {
   position: absolute;
-  // background: blue;
   border-radius: 10px;
   transition: 0.5s;
   width: 90%;
@@ -93,8 +91,6 @@ canvas {
   display: flex;
   flex-direction: column;
   align-items: center;
-  // justify-content: center;
-  // display: none;
   background: rgb(23, 23, 23);
   color: #f1f1f1;
   #game-over-title {
@@ -113,7 +109,6 @@ canvas {
       rgba(20, 216, 39, 1) 100%
     );
     border: none;
-    // border: 1px solid white;
     border-radius: 10px;
     -webkit-box-shadow: 5px 5px 15px 5px #000000;
     box-shadow: 5px 5px 10px 5px #000000;
@@ -123,7 +118,6 @@ canvas {
     &:hover {
       // animation: name duration timing-function delay iteration-count direction fill-mode;
       animation: animeBtnTransit 0.4s ease-in-out forwards; /* Applique l'animation au bouton */
-      background-color: red;
     }
   }
   #div-scores {
@@ -146,8 +140,9 @@ canvas {
       display: flex;
       flex-direction: column;
       align-items: center;
-      background: red;
       width: 50%;
+      display: none;
+      padding: 5px;
       div {
         width: 90%;
         display: flex;
@@ -155,16 +150,17 @@ canvas {
         align-items: center;
         label {
           width: 90%;
+          margin: 5px 0;
+          font-weight: bold;
         }
         input {
+          padding: 2px;
           width: 90%;
           margin-bottom: 5%;
         }
       }
     }
-
   }
-
 
   //tablets
   @media screen and (min-width: 750px) and (max-width: 1050px) {
@@ -175,7 +171,6 @@ canvas {
       font-size: 16px;
       text-align: center;
     }
-
   }
   //mobiles
 
@@ -193,16 +188,19 @@ canvas {
     .btn-restart {
       margin: 3% 0;
     }
-    #div-scores{
-background: blue;
-      width: 60%;
+    #div-scores {
+      width: 80%;
       ul#list-scores {
-        // margin-top: 100px;
-        background: pink;
+        display: block;
         padding: 0 1%;
         li {
           font-size: 12px;
         }
+      }
+    }
+    #form-score {
+      width: 80%;
+      label {
       }
     }
   }

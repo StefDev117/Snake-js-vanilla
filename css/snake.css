@@ -164,7 +164,6 @@ canvas {
   -webkit-animation: animeBtnTransit 0.4s ease-in-out forwards;
           animation: animeBtnTransit 0.4s ease-in-out forwards;
   /* Applique l'animation au bouton */
-  background-color: red;
 }
 
 #modal-game-over #div-scores {
@@ -195,8 +194,9 @@ canvas {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background: red;
   width: 50%;
+  display: none;
+  padding: 5px;
 }
 
 #modal-game-over #div-scores form#form-score div {
@@ -215,9 +215,12 @@ canvas {
 
 #modal-game-over #div-scores form#form-score div label {
   width: 90%;
+  margin: 5px 0;
+  font-weight: bold;
 }
 
 #modal-game-over #div-scores form#form-score div input {
+  padding: 2px;
   width: 90%;
   margin-bottom: 5%;
 }
@@ -248,15 +251,17 @@ canvas {
     margin: 3% 0;
   }
   #modal-game-over #div-scores {
-    background: blue;
-    width: 60%;
+    width: 80%;
   }
   #modal-game-over #div-scores ul#list-scores {
-    background: pink;
+    display: block;
     padding: 0 1%;
   }
   #modal-game-over #div-scores ul#list-scores li {
     font-size: 12px;
+  }
+  #modal-game-over #form-score {
+    width: 80%;
   }
 }
 

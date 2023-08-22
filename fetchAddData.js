@@ -45,6 +45,9 @@ async function sendData(pseudo, score) {
       alert("Ce pseudo existe déjà");
       return;
     }
+    formulaire.style.display = "none";
+    listScores.style.display = "block";
+    titleScores.style.display = "flex";
     // else {
     //     formulaire.style.display = "none";
     // }
