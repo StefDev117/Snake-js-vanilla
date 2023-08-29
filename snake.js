@@ -1,4 +1,3 @@
-console.log("snake.js");
 const body = document.querySelector("body");
 const parentCanvas = document.querySelector(".parent-canvas");
 
@@ -97,7 +96,7 @@ window.onload = () => {
       snakee.draw();
       applee.draw();
       drawScore();
-      timeOutId = setTimeout(refreshCanvas, 100);
+      timeOutId = setTimeout(refreshCanvas, 120);
     }
   }
 
@@ -136,9 +135,7 @@ window.onload = () => {
   //formulaire
   formulaire.addEventListener("submit", (e) => {
     e.preventDefault();
-    console.log(inputPseudo.value, score);
-    dataSorted.push({pseudo: inputPseudo.value, score: score});
-    createList(dataSorted);
+
     sendData(inputPseudo.value, score);
   });
 
@@ -325,8 +322,6 @@ window.onload = () => {
       var isOnSnake = false;
       for (let i = 0; i < snakeToCheck.body.length; i++) {
         const el = snakeToCheck.body[i];
-        console.log(snakeToCheck.body);
-        console.log(el[0]);
         if (this.position[0] === el[0] && this.position[1] === el[1]) {
           isOnSnake = true;
         }
@@ -356,8 +351,8 @@ window.onload = () => {
       case "ArrowLeft":
         newDirection2 = "left";
         break;
-      case "Space":
-        restart();
+      // case "Space":
+      //   restart();
 
         score = 0;
         return;
@@ -431,7 +426,7 @@ window.onload = () => {
     return new Promise((resolve, reject) => {
       if (intervalScore === null) {
         intervalScore = setInterval(() => {
-          score += 10;
+          score += 20;
           // scoreTxt.textContent = score;
 
           if (score % 1000 === 0) {
@@ -440,7 +435,6 @@ window.onload = () => {
             resolve(score);
           }
         }, 10);
-        console.log(score);
       }
     });
   };
@@ -451,7 +445,6 @@ let dataSorted;
 function createList(datas) {
   dataSorted = datas.sort((a, b) => b.score - a.score).splice(0, 5);
   //range mon tableau et garde le top 5
-  console.log(dataSorted);
   writeScores(dataSorted);
 }
 
@@ -463,7 +456,6 @@ function writeScores(datasSorted) {
     newLiElement.textContent = `${index + 1} : ${pseudo} : ${score}`;
 
     listScores.appendChild(newLiElement);
-    console.log(pseudo, score);
   });
 }
 

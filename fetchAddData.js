@@ -1,4 +1,3 @@
-
 // const apiKey = "https://ebcuqyxwtszamhldxsep.supabase.co"; // Remplacez par votre clé API Supabase
 // const apiUrl =
 //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImViY3VxeXh3dHN6YW1obGR4c2VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTE2NjUyMDIsImV4cCI6MjAwNzI0MTIwMn0.jjGBK0yAgpJ-VCFbedUYr5-ko64IhuCMOBEIa6NNvDY"; // Remplacez par l'URL de votre table
@@ -45,6 +44,8 @@ async function sendData(pseudo, score) {
       alert("Ce pseudo existe déjà");
       return;
     }
+    dataSorted.push({ pseudo: inputPseudo.value, score: score });
+    createList(dataSorted);
     formulaire.style.display = "none";
     listScores.style.display = "block";
     titleScores.style.display = "flex";
