@@ -354,7 +354,7 @@ window.onload = () => {
       // case "Space":
       //   restart();
 
-        score = 0;
+        // score = 0;
         return;
       default:
         return;
